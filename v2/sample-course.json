@@ -1,0 +1,133 @@
+{
+  "@context": "https://bharatskills.github.io/skillcreds-spec/v1/context.json#",
+  "@id": "urn:uuid:1c0af19b-df85-42f3-9441-8a390b6c1589",
+  "@type": ["Credential", "Extension", "CertificateExtension"],
+  "recipient": {
+    "@id": "#/evidence/0/subject"
+  },
+  "badge": {
+    "@id": "https://example.pasdc.org/certs/courses/ASCL3",
+    "@type": "BadgeClass",
+    "name": "Automotive Service Technician Course",
+    "description": " ... ",
+    "image": "data:image/png;base64,<base64-encoded-png-data>",
+    "criteria": {
+      "@type": "Criteria",
+      "narrative": "Successfully cleared assessment for role of Automotive Service Technician"
+    },
+    "awardedBy": {
+      "@type": "AwardingBody",
+      "@id": "https://example.pasdc.org/opencreds/profile.json",
+      "name": "Partner & Associate Skills Development Corporation",
+      "image": "https://example.pasdc.org/images/logo.png"
+    },
+    "alignment": [{
+      "targetName": "Automotive Service Technician - Level 3",
+      "targetUrl": "https://www.nqr.gov.in/ASC/Q1401",
+      "targetDescription": " ... ",
+      "targetFramework": "NSQF",
+      "targetCode": "ASC/Q1401"
+    }, {
+      "targetName": " Assist in vehicle service and maintenance",
+      "targetUrl": "https://www.nqr.gov.in/ASC/N1401",
+      "targetDescription": " ... ",
+      "targetFramework": "NOS",
+      "targetCode": "ASC/N1401"
+    }, {
+      "targetName": "Plan and organise work to meet expected outcomes",
+      "targetUrl": "https://www.nqr.gov.in/ASC/N0001",
+      "targetDescription": " ... ",
+      "targetFramework": "NOS",
+      "targetCode": "ASC/N0001"
+    }]
+  },
+  "awardedOn": "2018-10-29T10:21:43.087UTC",
+  "image": "https://example.pasdc.org/certs/1c0af19b8a390b6c1589.png",
+  "evidence": [{
+    "@id": "urn:uuid:f4e30fc7-fd1f-4afb-9d34-26b92e0078c3",
+    "@type": ["Evidence", "Extension", "TrainingEvidence"],
+    "name": "Training Course",
+    "subject": {
+      "@id": "#/evidence/0/subject",
+      "@type": "composite",
+      "name": "<Name of recipient>",
+      "components": [{
+        "@type": ["name", "Extension", "AnnotatedExtension"],
+        "annotation": "FATHER",
+        "identity": "<Name of father>"
+      }, {
+        "@type": ["@id", "Extension", "AnnotatedExtension"],
+        "annotation": "MASKED",
+        "identity": "urn:in.gov.uidai.aadhaar:XXXX-XXXXXXXX-2437"
+      }]
+    },
+    "trainer": {
+      "@type": "Profile",
+      "@id": "https://trainer.example.edu/about.json",
+      "name": "Partner Training Institute",
+      "image": "https://trainer.example.edu/logo.jpg"
+    },
+    "duration": {
+      "startDate": "2018-07-25",
+      "endDate": "2018-10-22"
+    },
+    "session": "2018 Aug-Oct Batch #3"
+  },{
+    "@id": "urn:uuid:02644c88-d2b7-41ef-a78c-6adf7fbdb268",
+    "@type": ["Evidence", "Extension", "AssessedEvidence"],
+    "name": "Course Grade",
+    "subject": {
+      "@id": "#/evidence/1/subject",
+      "@type": "composite",
+      "components": [{
+        "@type": ["name", "Extension", "AnnotatedExtension"],
+        "annotation": "FATHER",
+        "identity": "<Name of father>"
+      }, {
+        "@type": ["@id", "Extension", "AnnotatedExtension"],
+        "annotation": "MASKED",
+        "identity": "urn:in.gov.uidai.aadhaar:XXXX-XXXXXXXX-2437"
+      }],
+      "name": "<Name of recipient>"
+    },
+    "assessment": {
+      "@type": "grade",
+      "value": "B+",
+      "maxValue": "A+",
+      "related": {
+        "@type": ["equivalent", "percentage"],
+        "value": "72"
+      }
+    },
+    "assessedBy": {
+      "@type": ["Profile", "Extension", "SignatoryExtension"],
+      "@id": "https://example.assessor.org/profile.json",
+      "name": "Acme Automotive Assessments Institute",
+      "image": "https://example.assessor.org/cert-logo.png",
+      "publicKey": {
+        "@id": "https://example.assessor.org/keys/1",
+        "@type": "CryptographicKey",
+        "owner": "https://example.assessor.org/profile.json",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\n... ... ... ... ...\n-----END PUBLIC KEY-----\n"
+      }
+    },
+    "assessedOn": "2018-10-19T6:30:00Z",
+    "signature": {
+      "@type": "RsaSignature2018",
+      "creator": "https://example.assessor.org/keys/1",
+      "created": "2018-10-23T20:21:34Z",
+      "signatureValue": "DuMMy-LTQzNTVVmMm3ODM3QzNmtlYzIZD34GIyZGk="
+    }
+  }],
+  "verification": {
+    "@type": "LinkedDataSignature2015"
+  },
+  "signatory": {
+    "@type": ["IdentityObject", "@id", "Extension", "SignatoryExtension"],
+    "identity": "urn:in.gov.ka-dot.dl:<KA DL #>",
+    "name": "<Name of signatory>",
+    "image": "https://example.asdc.org/p/ceo/sign-image.jpg",
+    "designation": "CEO, Automotive Skills Development Council"
+  },
+  "printUri": "data:image/jpeg;base64,<jpg-data>"
+}

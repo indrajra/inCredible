@@ -40,10 +40,10 @@ April 2019
          * [Signatory Extension](#signatory-extension)
       * [Additional Properties](#additional-properties)
    * [List of Appendices](#list-of-appendices)
-      * [Appendix 1: Signing Procedure for Assertions and Evidence](#appendix-1:-signing-procedeure-for-assertions-and-evidence)
-      * [Appendix 2: Usage of credentials](#appendix-2:-usage-of-credentials)
-      * [Appendix 3: Verifying Authenticity of a Certificate](#appendix-3:-verifying-authenticity-of-a-certificate)
-      * [Appendix 4: List of extensions to OpenBadges v2](#appendix-4:-list-of-extensions-to-openbadges-v2) 
+      * [Appendix 1: Signing Procedure for Assertions and Evidence](#appendix-1-signing-procedure-for-assertions-and-evidence)
+      * [Appendix 2: Usage of credentials](#appendix-2-usage-of-credentials)
+      * [Appendix 3: Verifying Authenticity of a Certificate](#appendix-3-verifying-authenticity-of-a-certificate)
+      * [Appendix 4: List of extensions to OpenBadges v2](#appendix-4-list-of-extensions-to-openbadges-v2)
    * [References](#references)
 
 # Introduction
@@ -672,7 +672,7 @@ Note that when authenticating the physical certificate, downloading the machine 
 Public keys for the awarding bodies could be cloud-hosted by each signing body. For instance, each Sector Skill Council (SSC) could maintain its own public keys in the cloud where they can be accessed by anyone trying to verify a certificate awarded by the SSC. However, if signing keys are cloud-hosted and the cloud location is embedded inside the certificate then any change in the location of the key will invalidate certificates. Awarding bodies may or may not be able to maintain a permanent location for their keys metadata. This could be worked around by either employing a key broker service which enables keys to be discovered after an awarding body has changed its location or alternatively by a capable entity providing a secure repository of public keys for all awarding bodies as an ecosystem service.
 
 ## Appendix 4: List of extensions to OpenBadges v2
-### Quick summary
+### Context
 In the JSON-LD [context file](./context.json), the "scd:" prefix denotes classes proposed as part of this specification.
 1. All types which are added in addition to OpenBadges have been prefixed with "scd:"
 2. All properties which were added as part of inCredible have also been prefixed with "scd:" 

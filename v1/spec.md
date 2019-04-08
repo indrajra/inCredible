@@ -13,52 +13,37 @@ April 2019
       * [Conceptual Model](#conceptual-model)
       * [Data Modelling Principles](#data-modelling-principles)
       * [Visual Representation](#visual-representation)
-         * [<strong>QR Codes</strong>](#qr-codes)
+         * [QR Codes](#qr-codes)
       * [Entity Identity](#entity-identity)
       * [Structural Model](#structural-model)
-         * [<strong>Assertion</strong>](#assertion)
-         * [<strong>Recipient</strong>](#recipient)
-         * [<strong>BadgeClass</strong>](#badgeclass)
-         * [<strong>AwardingBody</strong>](#awardingbody)
-         * [<strong>Competency Standard</strong>](#competency-standard)
-         * [<strong>Evidence</strong>](#evidence)
-         * [<strong>Assessor</strong>](#assessor)
+         * [Assertion](#assertion)
+         * [Recipient](#recipient)
+         * [BadgeClass](#badgeclass)
+         * [AwardingBody](#awardingbody)
+         * [Competency Standard](#competency-standard)
+         * [Evidence](#evidence)
+         * [Assessor](#assessor)
       * [Data Model](#data-model)
-         * [<strong>Open Standards</strong>](#open-standards)
-         * [<strong>Identifiers</strong>](#identifiers)
-            * [<strong>Identifier Namespaces</strong>](#identifier-namespaces)
-            * [<strong>URN Identifiers</strong>](#urn-identifiers)
-            * [<strong>Institution Ids</strong>](#institution-ids)
-            * [<strong>Individual Ids</strong>](#individual-ids)
-            * [<strong>Object Ids</strong>](#object-ids)
+         * [Open Standards](#open-standards)
+         * [Identifiers](#identifiers)
       * [Object Model](#object-model)
-         * [<strong>Assertion</strong>](#assertion-1)
-         * [<strong>CertificateExtension</strong>](#certificateextension)
-         * [<strong>CompositeIdentity Object</strong>](#compositeidentity-object)
-         * [<strong>BadgeClass</strong>](#badgeclass-1)
-         * [<strong>Profile: AwardingBody/Assessor/Trainer</strong>](#profile-awardingbodyassessortrainer)
-         * [<strong>Alignment Object</strong>](#alignment-object)
-         * [<strong>Evidence</strong>](#evidence-1)
-         * [<strong>TrainingEvidence</strong>](#trainingevidence)
-         * [<strong>AssessedEvidence</strong>](#assessedevidence)
-         * [<strong>Assessment</strong>](#assessment)
-            * [<strong>MarksAssessment</strong>](#marksassessment)
-         * [<strong>Signatory Extension</strong>](#signatory-extension)
+         * [Assertion](#assertion-1)
+         * [CertificateExtension](#certificateextension)
+         * [CompositeIdentity Object](#compositeidentity-object)
+         * [BadgeClass](#badgeclass-1)
+         * [Profile: AwardingBody/Assessor/Trainer](#profile-awardingbodyassessortrainer)
+         * [Alignment Object](#alignment-object)
+         * [Evidence](#evidence-1)
+         * [TrainingEvidence](#trainingevidence)
+         * [AssessedEvidence](#assessedevidence)
+         * [Assessment](#assessment)
+         * [Signatory Extension](#signatory-extension)
       * [Additional Properties](#additional-properties)
-      * [Examples](#examples)
-         * [<strong>Ecosystem</strong>](#ecosystem)
-      * [Issuing Credentials](#issuing-credentials)
-         * [<strong>Signing Procedure for Assertions and Evidence</strong>](#signing-procedure-for-assertions-and-evidence)
-      * [Usage](#usage)
-         * [<strong>Delivery and Storage of Credentials</strong>](#delivery-and-storage-of-credentials)
-            * [<strong>Email</strong>](#email)
-            * [<strong>Web</strong>](#web)
-            * [<strong>DigiLocker and other National Repositories</strong>](#digilocker-and-other-national-repositories)
-            * [<strong>Blockchain</strong>](#blockchain)
-            * [<strong>Wallet</strong>](#wallet)
-            * [<strong>uPort</strong>](#uport)
-         * [<strong>Verifying Authenticity of a Certificate</strong>](#verifying-authenticity-of-a-certificate)
-            * [<strong>Key Management</strong>](#key-management)
+      * [List of Appendices] (#list-of-appendices)
+         * [Appendix 1: Signing Procedure for Assertions and Evidence](#appendix-1:-signing-procedeure-for-assertions-and-evidence)
+         * [Appendix 2: Usage of credentials](#appendix-2:-usage-of-credentials)
+         * [Appendix 3: Verifying Authenticity of a Certificate](#appendix-3:-verifying-authenticity-of-a-certificate)
+         * [Appendix 4: List of extensions to OpenBadges v2](#appendix-4:-list-of-extensions-to-openbadges-v2) 
    * [References](#references)
 
 # Introduction
@@ -136,7 +121,7 @@ A visual representation of the credential (rendering) can be generated using dat
 Applications are also open to using format of choice when embedding the rendered certificate. Formats such as PDF documents or images are well-suited for long-term survivability and compatibility. PDF documents may also carry metadata inside them. Other formats such as HTML are attractive as they are easier to generate. One must note, however, that HTML standards evolve over time. To ensure that embedded HTML will render well twenty or thirty years in the future, a very minimal and high-compatibility subset of HTML should be used.
 
 
-### **QR Codes**
+### QR Codes
 
 Printable representations of the credential may also carry QR codes as an offline-to-online bridge. If a QR code is part of the printable representation then the QR code may contain credential metadata in its payload which aid in the verification of the credential. There are two broad means of verifying a credential, either by verifying the digital signature of a hosted representation or by verifying the digital signature offline.
 
@@ -148,7 +133,7 @@ Printable representations of the credential may also carry QR codes as an offlin
 2. If the credential is not hosted in the cloud,
     4. If the credential JSON document is small enough, the JSON payload may be encoded as a string and embedded into the QR code. To reduce the size of the JSON, the payload may be compressed using the GZIP compression algorithm.
     5. If the credential JSON document is larger than 2900 bytes, the QR code should contain essential information to verify the digital signature offline. The following items required for signature verification should be inserted into a JSON object. The entire JSON object then must be encoded as a string and embedded  into the QR code.
-        a. <strong><code>@id</code></strong>: @id of the document
+        a. <strong><code>id</code></strong>: @id of the document
         b. <strong><code>hash</code></strong>: hash of the document without the <strong><code>scd:signature</code></strong> element. The hash is recommended here for protecting any personal or sensitive data from accidental leakage, misuse.
         c. <strong><code>publicKey</code></strong>: HTTP URI of the key used to sign the credential
         d. <strong><code>signature</code></strong>: bytes of the digital signature generated using (a) and (b)
@@ -179,37 +164,37 @@ The structural model of a credential aligns with the OpenBadges v2.0 schema and 
 </p>
 
 
-### **Assertion**
+### Assertion
 
 An assertion is a statement of fact. The credentials issued are statements of fact about recipient's accomplishments. Hence, the root object of the credential is called an assertion. The assertion object is a container object for sub-objects representing the awarding body, recipient and the recipient's credentials being certified. The assertion object described in this specification extends the OpenBadges v2 <strong><code>Assertion</code></strong> object with a few additional properties via the <strong><code>CertificateExtension</code></strong> class.
 
 
-### **Recipient**
+### Recipient
 
 The recipient of the certificate may be an individual or an organisation. The recipient of the certificate is identified by an <strong><code>IdentityObject.</code></strong>
 
 
-### **BadgeClass**
+### BadgeClass
 
 The <strong><code>BadgeClass</code></strong> describes a category of credentials that is awarded. The badge class contains details of the awarding body of the credential, the skill domain & standard achieved. For instance, one category of of credentials may be a School Leaving Certificate awarded by a school board, another could be a Bachelor's Degree certificate awarded by a University.
 
 
-### **AwardingBody**
+### AwardingBody
 
 The awarding body of the credential will be an organisation or institution which is a competent authority to certify recipients. Note that the awarding body is different from the signatory (i.e. the individual(s) who applies his/her signature to the credential).
 
 
-### **Competency Standard**
+### Competency Standard
 
 Standard is a skill definition or a competency defined by a certified standards body for the domain. Any given standard must be uniquely identifiable and will also commonly be part of a framework which defines relationships between standards in a domain. <strong><code>BadgeClass</code></strong> descriptions link to defined standards via <strong><code>AlignmentObjects</code></strong>.
 
 
-### **Evidence**
+### Evidence
 
 The credential may contain one more list items of evidence which have been assessed in support of the credential. Each item of evidence may contain an assessment performed by the assessor. The evidence may link to standards criteria and a level of mastery which the recipient displays for the given criterion.
 
 
-### **Assessor**
+### Assessor
 
 The assessor evaluates a trainee's competencies. The assessor is an organisation or institution which has been certified as a competent authority to assess skills for a given domain standard(s).
 
@@ -217,10 +202,9 @@ The assessor evaluates a trainee's competencies. The assessor is an organisation
 ## Data Model
 
 
-### **Open Standards**
+### Open Standards
 
 The credentials data model uses the following standards for defining a credential:
-
 
 
 *   Alignment with OpenBadges v2 vocabulary for defining accomplishments. The OpenBadges vocabulary is extended in some areas for specific use cases.
@@ -233,7 +217,7 @@ The credentials data model uses the following standards for defining a credentia
 *   Each object class used in the model must be defined in terms of an RDF schema. Under the JSON-LD serialisation format, the schema needs to be published and made available at a specific web URL for validation and consumption of credentials. 
 
 
-### **Identifiers**
+### Identifiers
 
 Based on the above principles for identifying entities using strong identifiers the following apply when assigning identifiers for objects.
 
@@ -415,7 +399,7 @@ BadgeClasses should ideally be identified via a HTTP URL which returns a JSON-LD
 Objects and the properties as defined by this credentials specification are detailed here.
 
 
-### **Assertion**
+### Assertion
 
 The base of the model is an assertion. The assertion class is defined as part of the <strong><code>OpenBadges</code></strong> v2.0 specification. Some additional properties are added via <strong><code>CertificateExtension.</code></strong>
 
@@ -435,7 +419,7 @@ The base of the model is an assertion. The assertion class is defined as part of
 *   <strong><code>verification</code></strong> containing the string <strong><code>LinkedDataSignatures</code></strong> for signed certificates
 *   <strong><code>narrative</code></strong> as text or markdown text which can be used to describe and connect multiple pieces of evidence
 
-### <strong>CertificateExtension</strong>
+### CertificateExtension
 
 The Assertion type from OpenBadges is extended by the <strong><code>CertificateExtension</code></strong> which adds the following field definitions.
 
@@ -450,7 +434,7 @@ The Assertion type from OpenBadges is extended by the <strong><code>CertificateE
 *   <strong><code>signature</code></strong> added by the awarding body using its private key.
 
 
-### <strong>CompositeIdentity Object</strong>
+### CompositeIdentity Object
 
 OpenBadges v2 uses IdentityObjects to represent the recipient of a certificate. We extend it to represent a composite identity which is composed of a sub component <strong><code>IdentityObjects</code></strong>.
 
@@ -482,7 +466,7 @@ Additionally, we define the following <strong><code>IdentityObject</code></stron
 *   <strong><code>url</code></strong>: a Universal Resource Location. Required, if urn is not provided.
 
 
-### <strong>BadgeClass</strong>
+### BadgeClass
 
 *   <strong><code>id</code></strong> which uniquely identifies the <strong><code>BadgeClass</code></strong>
     *   If the credential is an instance of a larger category of certificates which may be awarded multiple times, it must be a HTTP URL where the JSON-LD description of the <strong><code>BadgeClass</code></strong> is available.
@@ -501,7 +485,7 @@ Additionally, we define the following <strong><code>IdentityObject</code></stron
 *   optional <strong><code>alignment</code></strong> containing details of alignment to educational standards. This could be a list.
 *The fields in the BadgeClass are as-is from Open Badges 2.0 specification and have been included here for additional explanation.*
 
-### <strong>Profile: Issuer/Assessor/Trainer</strong>
+### Profile: Issuer/Assessor/Trainer
 
 
 *   <strong><code>id</code> or<code> ID</code> </strong>to identify the awarding body. Should be a HTTP URL where a JSON-LD object describing the awarding body can be retrieved.
@@ -515,7 +499,7 @@ Additionally, we define the following <strong><code>IdentityObject</code></stron
 
 *The fields in the BadgeClass are as-is from Open Badges 2.0 specification and have been included here for additional explanation.*
 
-### <strong>Alignment Object</strong>
+### Alignment Object
 
 The OpenBadges v2 <strong><code>AlignmentObject</code></strong> is used to link a <strong><code>BadgeClass</code></strong> or an item of <strong><code>Evidence</code></strong> to an academic standard.
 
@@ -527,7 +511,7 @@ The OpenBadges v2 <strong><code>AlignmentObject</code></strong> is used to link 
 *   <strong><code>targetCode</code></strong> a string containing a code within target framework for the aligned standard
 
 
-### <strong>Evidence</strong>
+### Evidence
 
 The <strong><code>Evidence</code></strong> class from OpenBadges v2 spec is used to describe evidence in support of a credential.
 
@@ -540,7 +524,7 @@ The <strong><code>Evidence</code></strong> class from OpenBadges v2 spec is used
 *   optional text <strong><code>audience</code></strong> detailing the audience for which the evidence is presented
 
 
-### <strong>TrainingEvidence</strong>
+### TrainingEvidence
 
 The <strong><code>TrainingEvidence</code></strong> class is an extension of <strong><code>Evidence</code></strong> class to add training specific properties.
 
@@ -552,7 +536,7 @@ The <strong><code>TrainingEvidence</code></strong> class is an extension of <str
 *   optional <strong><code>session</code></strong> a string denoting a session or a batch of the course that the recipient completed
 
 
-### <strong>AssessedEvidence</strong>
+### AssessedEvidence
 
 The <strong><code>AssessedEvidence</code></strong> class is an extension to the <strong><code>Evidence</code></strong> class which adds additional fields for assessors and signatures.
 
@@ -567,7 +551,7 @@ The <strong><code>AssessedEvidence</code></strong> class is an extension to the 
 If assessors are not ready and able to submit individually signed evidence, the assessor's signature on the <strong><code>AssessedEvidence</code></strong> may be omitted. It is then the responsibility of the awarding body to ensure the authenticity of the evidence submitted by the assessor through other available channels. Over time, migrating the assessment ecosystem to standardise on individually signed items of evidence will increase the overall level of trust in the certification process and will increase the utility of certificates in the employment process.
 
 
-### **Assessment**
+### Assessment
 
 <strong><code>Assessments</code></strong> can vary based on the nature of the assessment carried out. The essential fields of an assessment are
 
@@ -589,7 +573,7 @@ To illustrate, a _schema for a marks-based assessment_ which adds additional pro
 *   <strong><code>passValue</code></strong> The actual passing score
 
 
-### <strong>Signatory Extension</strong>
+### Signatory Extension
 
 <strong><code>SignatoryExtension</code></strong> class extends the OpenBadges v2 <strong><code>IdentityObject</code></strong> to add the following properties:
 
@@ -609,47 +593,51 @@ Since the objects are modeled using RDF principles, additional properties may be
 
 
 # List of Appendices
+## Appendix 1: Signing Procedure for Assertions and Evidence
+Signing a certificate is a process by which a one-way digest of the assertion object is computed and is then cryptographically signed (encryption) using the awarding body’s private key. The signature suite used will specify the digest and the cryptographic functions which are to be applied (suggestion is to use LinkedDataSignature2015).
+The private key used for signing must be maintained in a secure repository and should be transferred only via secure channels. During application usage the keys should be maintained in the secure area such as an HSM. The data to be signed using the private key should be sent for signing and the signed value returned.
 
-## Appendix 1: Usage of credentials
 
-### **Delivery and Storage of Credentials**
+## Appendix 2: Usage of credentials
+
+### Delivery and Storage of Credentials
 
 Delivery mechanisms for credential documents can vary based on the context where they are awarded. A certificate for an online course may be awarded immediately in the browser, while an offline course with written exams may have an alternate method to deliver certificates. Furthermore, these mechanisms are dynamic and change over time. New modes of delivery may be developed and present methods may become obsolete. Similar considerations apply to the means of storing the certificate; the recipient may choose from multiple options available for securely storing the digital document.
 
 To empower recipients with a choice of delivery and storage mechanisms and to ensure compatibility with future methods, delivery and storage is independent of the data in the credential. Thus the adopters may freely choose any means to identify the recipient of the credential and independently choose the way it is delivered and stored. Below we consider some well-established delivery and storage options as well as a few emerging technology options such as Blockcerts and uPort.
 
 
-#### **Email**
+#### Email
 
 One mode of delivery may be email. If the recipient's email address is known, and the recipient elects for email delivery, the certificate can be sent to the recipient's email address as an attachment. The recipient is then free to store using any solution available such as a cloud drive, offline storage etc.
 
 
-#### **Web**
+#### Web
 
 An alternate mode of delivery can be via a private URL which allows the recipient to download the JSON-LD credential. The recipient is then free to store using any solution available such as a cloud drive, thumb drive, offline storage etc. The private URL can be sent to the recipient via an SMS message to a mobile device, an email or any other communication channel available to the awarding body and the recipient.
 
 
-#### **DigiLocker and other National Repositories**
+#### DigiLocker and other National Repositories
 
 Certificates can be stored in the cloud using services such as India's DigiLocker or any other National Academic Repositories. The machine-readable format has a printable representation embedded in it which can be used by client applications to render previews of the credential.
 
 
-#### **Blockchain**
+#### Blockchain
 
 Blockchain applications may also be used to deliver the certificate to the recipient. The awarding body can use a blockchain certificate publishing protocol such as Blockcerts which is also compatible with OpenBadges to store certificates on a blockchain as part of transaction metadata. Recipients can then retrieve the certificate from the blockchain and store as per their choice.
 
 
-#### **Wallet**
+#### Wallet
 
 Application developers can create mobile wallets for storing credentials. The JSON-LD document containing the certificate can be imported into any number of such applications to manage accomplishments and credentials. The embedded printable representation may be used by wallet applications to render previews of the credential.
 
 
-#### **uPort**
+#### uPort
 
 uPort is a toolkit for building distributed applications on top of the Ethereum blockchain. uPort applications can issue credentials to a user which are then attached to the user's profile. The certificate spec described above can be linked into a uPort message which is transported a JSON Web Token (JWT). The JWT contains signed-data as a <strong><code>claim</code></strong> which can be the assertion JSON object.
 
 
-## Appendix 2: Verifying Authenticity of a Certificate
+## Appendix 3: Verifying Authenticity of a Certificate
 
 A certificate is authenticated along three dimensions.
 
@@ -683,7 +671,7 @@ Note that when authenticating the physical certificate, downloading the machine 
 
 Public keys for the awarding bodies could be cloud-hosted by each signing body. For instance, each Sector Skill Council (SSC) could maintain its own public keys in the cloud where they can be accessed by anyone trying to verify a certificate awarded by the SSC. However, if signing keys are cloud-hosted and the cloud location is embedded inside the certificate then any change in the location of the key will invalidate certificates. Awarding bodies may or may not be able to maintain a permanent location for their keys metadata. This could be worked around by either employing a key broker service which enables keys to be discovered after an awarding body has changed its location or alternatively by a capable entity providing a secure repository of public keys for all awarding bodies as an ecosystem service.
 
-## Appendix 3: List of extensions to OpenBadges v2
+## Appendix 4: List of extensions to OpenBadges v2
 ### Quick summary
 In the JSON-LD [context file](./context.json), the "scd:" prefix denotes classes proposed as part of this specification.
 1. All types which are added in addition to OpenBadges have been prefixed with "scd:"
@@ -692,21 +680,23 @@ In the JSON-LD [context file](./context.json), the "scd:" prefix denotes classes
 
 ### Details
 1. scd:CertificateExtension
-This type was added as an extension to the OB Assertion type. New properties listed below, but not limited to, were added:
+This class was added as an extension to the <strong><code>Assertion</strong></code> class. New properties listed below, but not limited to, were added:
 a. Digital Signature of awarding body
-b. Signatory (person who is signing the credential)
+b. Signatory
 c. Print URI which encapsulates the printable representation of the document as a URL or as embedded data
 d. Validity starting date (end date was already in Open Badges)
 
 2. scd:CompositeIdentity
-This type was added as a new type which allows representing the identity of the recipient of the credential. The OpenBadges spec allows us to represent the identity of the recipient via a hashed or unhashed email. However, in some cases, it could be useful to represent the identity as a combination of properties and thus the need of this class. 
+This class extends the <strong><code>Identity</strong></code>. The OpenBadges spec allows us to represent the identity of the recipient via a hashed or unhashed email. However, in some cases, it could be useful to represent the identity as a combination of properties and thus the need of this class. 
 
 3. scd:AssessedEvidence
-This was added as an extension to the OB Evidence type. The primary reason for adding this type was to create a structure for how assessment related data would be recorded in the credential. The OB Evidence was a link to evidence which could be represented in a free-form manner -- here we have a structure for representing the assessments information. 
+This class was added as an extension to the <strong><code>Evidence</strong></code> class. By having this type, we could create a structure for how assessment related data would be captured in the credential. 
 
 4. scd:TrainingEvidence
-This type was also added as an extension to the OB Evidence type to support cases where the trainer and assessor are different.
+This class was also added as an extension to the <strong><code>Evidence</strong></code> type to support cases where the trainer and assessor are different.
 
+5. scd:SignatoryExtension
+This type was <strong><code></strong></code>
 
 # References
 

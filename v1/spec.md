@@ -9,7 +9,7 @@ April 2019
 **Table of Contents**
    * [Introduction](#introduction)
       * [Principles](#principles)
-   * [Specifications](#proposed-specifications)
+   * [Specification](#proposed-specifications)
       * [Conceptual Model](#conceptual-model)
       * [Data Modelling Principles](#data-modelling-principles)
       * [Visual Representation](#visual-representation)
@@ -43,7 +43,7 @@ April 2019
       * [Appendix 1: Signing Procedure for Assertions and Evidence](#appendix-1-signing-procedure-for-assertions-and-evidence)
       * [Appendix 2: Usage of credentials](#appendix-2-usage-of-credentials)
       * [Appendix 3: Verifying Authenticity of a Certificate](#appendix-3-verifying-authenticity-of-a-certificate)
-      * [Appendix 4: List of extensions to OpenBadges v2](#appendix-4-list-of-extensions-to-openbadges-v2)
+      * [Appendix 4: List of extensions to OpenBadges v2.0](#appendix-4-list-of-extensions-to-openbadges-v2.0)
    * [References](#references)
 
 # Introduction
@@ -166,7 +166,7 @@ The structural model of a credential aligns with the OpenBadges v2.0 schema and 
 
 ### Assertion
 
-An assertion is a statement of fact. The credentials issued are statements of fact about recipient's accomplishments. Hence, the root object of the credential is called an assertion. The assertion object is a container object for sub-objects representing the awarding body, recipient and the recipient's credentials being certified. The assertion object described in this specification extends the OpenBadges v2 <strong><code>Assertion</code></strong> object with a few additional properties via the <strong><code>CertificateExtension</code></strong> class.
+An assertion is a statement of fact. The credentials issued are statements of fact about recipient's accomplishments. Hence, the root object of the credential is called an assertion. The assertion object is a container object for sub-objects representing the awarding body, recipient and the recipient's credentials being certified. The assertion object described in this specification extends the OpenBadges v2.0 <strong><code>Assertion</code></strong> object with a few additional properties via the <strong><code>CertificateExtension</code></strong> class.
 
 
 ### Recipient
@@ -207,11 +207,11 @@ The assessor evaluates a trainee's competencies. The assessor is an organisation
 The credentials data model uses the following standards for defining a credential:
 
 
-*   Alignment with OpenBadges v2 vocabulary for defining accomplishments. The OpenBadges vocabulary is extended in some areas for specific use cases.
+*   Alignment with OpenBadges v2.0 vocabulary for defining accomplishments. The OpenBadges vocabulary is extended in some areas for specific use cases.
 *   RDF 1.1 is used as the means for expressing the data contained in a credential.
 *   There are two serialization preferences given to the adopter of this specification:
-**  For some primitive users, the convenient serialisation format could be JSON. In such cases, the JSON-LD contexts must be pre-determined by the adopter. The JSON-LD is necessary to support other consumers, such as verifiers, that may prefer use of JSON-LD over JSON. Use [HTTP link headers](https://www.w3.org/TR/json-ld11/#interpreting-json-as-json-ld) on how to refer to context document using JSON.
-**  Advanced users can choose to serialize using JSON-LD, however, consumers of a credential are free to use alternative serialisation formats such as RDFs or a triple expression language such as Turtle.
+    * For some primitive users, the convenient serialisation format could be JSON. In such cases, the JSON-LD contexts must be pre-determined by the adopter. The JSON-LD is necessary to support other consumers, such as verifiers, that may prefer use of JSON-LD over JSON. Use [HTTP link headers](https://www.w3.org/TR/json-ld11/#interpreting-json-as-json-ld) on how to refer to context document using JSON.
+    * Advanced users can choose to serialize using JSON-LD, however, consumers of a credential are free to use alternative serialisation formats such as RDFs or a triple expression language such as Turtle.
 *   The credentials model uses (and in some places extends) the vocabulary of Classes and Properties described by schema.org and the WebPayments specification.
 *   Additionally the credentials model defines some new classes of objects.
 *   Each object class used in the model must be defined in terms of an RDF schema. Under the JSON-LD serialisation format, the schema needs to be published and made available at a specific web URL for validation and consumption of credentials. 
@@ -436,28 +436,25 @@ The Assertion type from OpenBadges is extended by the <strong><code>CertificateE
 
 ### CompositeIdentity Object
 
-OpenBadges v2 uses IdentityObjects to represent the recipient of a certificate. We extend it to represent a composite identity which is composed of a sub component <strong><code>IdentityObjects</code></strong>.
+OpenBadges v2.0 uses IdentityObjects to represent the recipient of a certificate. We extend it to represent a composite identity which is composed of a sub component <strong><code>IdentityObjects</code></strong>.
 
 To facilitate composite identities, the specification introduces:
-
-
 
 *   a new <strong><code>IdentityObject</code></strong> <strong><code>@type</code></strong> identifier called <strong><code>composite</code></strong>
 *   a new property <strong><code>annotation</code></strong> which can be used to qualify the identity type
 *   a new property <strong><code>components</code></strong> for composite identities. This property will contain sub-fields of the identity
+*   a new optional property <strong><code>name</code></strong>
 
-The fields of a composite <strong><code>IdentityObject</code></strong> will be
-
+The fields of a <strong><code>CompositeIdentityObject</code></strong> will be
 
 *   <strong><code>type</code></strong> will be Composite
-*   <strong><code>hashed</code></strong> will be false
-*   <strong><code>identity</code></strong> will be omitted
+*   <strong><code>hashed</code></strong> boolean flag whether the information is plain text or hashed. True if hashed.
+*   <strong><code>identity</code></strong> will be omitted at this level, instead use it at component level.
 *   <strong><code>components</code></strong> will be an array of other <strong><code>IdentityObjects</code></strong>
 
 Additionally, we define the following <strong><code>IdentityObject</code></strong> <strong><code>type</code></strong> identifiers to extend the set of profile identifier properties defined by OpenBadges.
 
-
-*   optional <strong><code>name</code></strong>: a name, often used in conjunction with <strong><code>annotation </code></strong>to represent a father's or a spouse's name.
+*  <strong><code>identity</code></strong> represents the value of the annotation, such as a father's or a spouse's name of the recipient.
 *   optional <strong><code>photo</code></strong>: a photograph, either a HTTP URL for a image or a data URI containing the mime type and image data in base64 encoding.
 *   optional <strong><code>dob</code></strong>: the date of birth in YYYY-MM-DD format.
 *   optional <strong><code>gender</code></strong>: the gender of the individual. 
@@ -501,7 +498,7 @@ Additionally, we define the following <strong><code>IdentityObject</code></stron
 
 ### Alignment Object
 
-The OpenBadges v2 <strong><code>AlignmentObject</code></strong> is used to link a <strong><code>BadgeClass</code></strong> or an item of <strong><code>Evidence</code></strong> to an academic standard.
+The OpenBadges v2.0 <strong><code>AlignmentObject</code></strong> is used to link a <strong><code>BadgeClass</code></strong> or an item of <strong><code>Evidence</code></strong> to an academic standard.
 
 
 
@@ -513,7 +510,7 @@ The OpenBadges v2 <strong><code>AlignmentObject</code></strong> is used to link 
 
 ### Evidence
 
-The <strong><code>Evidence</code></strong> class from OpenBadges v2 spec is used to describe evidence in support of a credential.
+The <strong><code>Evidence</code></strong> class from OpenBadges v2.0 spec is used to describe evidence in support of a credential.
 
 *   <strong><code>id </code></strong>which uniquely identifies the evidence from the <strong><code>urn:uuid</code></strong> namespace or a HTTP URL of a webpage which presents the evidence
 *   <strong><code>type</code></strong> containing the string Evidence. Additional types Extension and <strong><code>AssessedEvidence</code></strong> will be added when using <strong><code>AssessedEvidence</code></strong>
@@ -575,7 +572,7 @@ To illustrate, a _schema for a marks-based assessment_ which adds additional pro
 
 ### Signatory Extension
 
-<strong><code>SignatoryExtension</code></strong> class extends the OpenBadges v2 <strong><code>IdentityObject</code></strong> to add the following properties:
+<strong><code>SignatoryExtension</code></strong> class extends the OpenBadges v2.0 <strong><code>IdentityObject</code></strong> to add the following properties:
 
 
 *   optional <strong><code>designation</code></strong> of the signatory
@@ -671,7 +668,7 @@ Note that when authenticating the physical certificate, downloading the machine 
 
 Public keys for the awarding bodies could be cloud-hosted by each signing body. For instance, each Sector Skill Council (SSC) could maintain its own public keys in the cloud where they can be accessed by anyone trying to verify a certificate awarded by the SSC. However, if signing keys are cloud-hosted and the cloud location is embedded inside the certificate then any change in the location of the key will invalidate certificates. Awarding bodies may or may not be able to maintain a permanent location for their keys metadata. This could be worked around by either employing a key broker service which enables keys to be discovered after an awarding body has changed its location or alternatively by a capable entity providing a secure repository of public keys for all awarding bodies as an ecosystem service.
 
-## Appendix 4: List of extensions to OpenBadges v2
+## Appendix 4: List of extensions to OpenBadges v2.0
 ### Context
 In the JSON-LD [context file](./context.json), the "scd:" prefix denotes classes proposed as part of this specification.
 1. All types which are added in addition to OpenBadges have been prefixed with "scd:"
@@ -695,14 +692,17 @@ This class was added as an extension to the <strong><code>Evidence</strong></cod
 4. scd:TrainingEvidence
 This class was also added as an extension to the <strong><code>Evidence</strong></code> type to support cases where the trainer and assessor are different.
 
+In addition to the above, the following too have been added:
 5. scd:SignatoryExtension
-This type was <strong><code></strong></code>
+6. scd:Assessment
+
+
 
 # References
 
 
 1. Project inCredible -[ https://github.com/sunbird-specs/inCredible](https://github.com/sunbird-specs/inCredible)
-2. OpenBadges v2:[ https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/](https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/index.html)
+2. OpenBadges v2.0:[ https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/](https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/index.html)
     1. examples:[ https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/examples/](https://www.imsglobal.org/sites/default/files/Badges/OBv2p0Final/examples/)
 3. JSON-LD Syntax:[ https://w3c.github.io/json-ld-syntax/#introduction](https://w3c.github.io/json-ld-syntax/#introduction)
 4. JSON-LD:[ https://www.w3.org/TR/json-ld/](https://www.w3.org/TR/json-ld/)

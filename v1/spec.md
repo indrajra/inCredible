@@ -39,11 +39,11 @@ April 2019
          * [Assessment](#assessment)
          * [Signatory Extension](#signatory-extension)
       * [Additional Properties](#additional-properties)
-      * [List of Appendices] (#list-of-appendices)
-         * [Appendix 1: Signing Procedure for Assertions and Evidence](#appendix-1:-signing-procedeure-for-assertions-and-evidence)
-         * [Appendix 2: Usage of credentials](#appendix-2:-usage-of-credentials)
-         * [Appendix 3: Verifying Authenticity of a Certificate](#appendix-3:-verifying-authenticity-of-a-certificate)
-         * [Appendix 4: List of extensions to OpenBadges v2](#appendix-4:-list-of-extensions-to-openbadges-v2) 
+   * [List of Appendices](#list-of-appendices)
+      * [Appendix 1: Signing Procedure for Assertions and Evidence](#appendix-1:-signing-procedeure-for-assertions-and-evidence)
+      * [Appendix 2: Usage of credentials](#appendix-2:-usage-of-credentials)
+      * [Appendix 3: Verifying Authenticity of a Certificate](#appendix-3:-verifying-authenticity-of-a-certificate)
+      * [Appendix 4: List of extensions to OpenBadges v2](#appendix-4:-list-of-extensions-to-openbadges-v2) 
    * [References](#references)
 
 # Introduction

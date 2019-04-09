@@ -210,7 +210,7 @@ The credentials data model uses the following standards for defining a credentia
 *   Alignment with OpenBadges v2.0 vocabulary for defining accomplishments. The OpenBadges vocabulary is extended in some areas for specific use cases.
 *   RDF 1.1 is used as the means for expressing the data contained in a credential.
 *   There are two serialization preferences given to the adopter of this specification:
-    * For some primitive users, the convenient serialisation format could be JSON. In such cases, the JSON-LD contexts must be pre-determined by the adopter. The JSON-LD is necessary to support other consumers, such as verifiers, that may prefer use of JSON-LD over JSON. Use [HTTP link headers](https://www.w3.org/TR/json-ld11/#interpreting-json-as-json-ld) on how to refer to context document using JSON.
+    * For users who are new to JSON-LD, the convenient serialisation format could be JSON. In such cases, the JSON-LD contexts must be pre-determined by the adopter. The JSON-LD is necessary to support other consumers, such as verifiers, that may prefer use of JSON-LD over JSON. Use [HTTP link headers](https://www.w3.org/TR/json-ld11/#interpreting-json-as-json-ld) on how to refer to context document using JSON.
     * Advanced users can choose to serialize using JSON-LD, however, consumers of a credential are free to use alternative serialisation formats such as RDFs or a triple expression language such as Turtle.
 *   The credentials model uses (and in some places extends) the vocabulary of Classes and Properties described by schema.org and the WebPayments specification.
 *   Additionally the credentials model defines some new classes of objects.
